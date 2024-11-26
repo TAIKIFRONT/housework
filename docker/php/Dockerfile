@@ -10,8 +10,8 @@ COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 COPY --from=node:17.7 /usr/local/bin /usr/local/bin
 COPY --from=node:17.7 /usr/local/lib /usr/local/lib
 
-RUN apt-get update && \
-    apt-get -y install \
+RUN apt-get update && apt-get install -y \
+    libicu-dev \
     git \
     zip \
     unzip \
@@ -19,6 +19,7 @@ RUN apt-get update && \
     libzip-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
+    && docker-php-ext-install intl \
     && docker-php-ext-install zip gd \
     && docker-php-ext-install pdo_mysql bcmath \
     && git clone https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis \
