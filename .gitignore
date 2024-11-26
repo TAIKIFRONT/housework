@@ -1,0 +1,4 @@
+.env
+docker/minio/data/*
+docker/redis/data/*
+!.gitkeep
